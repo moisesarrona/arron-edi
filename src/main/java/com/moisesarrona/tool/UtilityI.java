@@ -10,4 +10,6 @@ public interface UtilityI {
 
     public Object setFieldClassEdi(String packageName, String className);
 
+    public List<String> getAllClassEdi();
+
 }

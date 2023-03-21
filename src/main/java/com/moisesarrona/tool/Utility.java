@@ -76,4 +76,20 @@ public class Utility implements UtilityI {
         }
     }
 
+    @Override
+    public List<String> getAllClassEdi() {
+        String[] packages = {
+            "com.moisesarrona.segments.heading",
+            "com.moisesarrona.segments.detail",
+            "com.moisesarrona.segments.summary"
+        };
+
+        List<String> clss = new ArrayList<>();
+        Arrays.stream(packages).forEach((packag) -> {
+            clss.addAll(getClassEdi(packag));
+        });
+
+        return clss;
+    }
+
 }
