@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Utility implements UtilityI {
 
@@ -38,17 +38,14 @@ public class Utility implements UtilityI {
         String packagePath = packageName.replace(".", "/");
         File packageDir = new File("src/main/java/" + packagePath);
         File[] files = packageDir.listFiles();
-        List<String> ediCLass = new ArrayList<>();
 
         assert files != null;
-        Arrays.stream(files).forEach((file) -> {
-            if (file.isFile() && file.getName().endsWith(".java")) {
-                String className = file.getName().substring(0, file.getName().length() - 5);
-                ediCLass.add(className);
-            }
-        });
+        return Arrays.stream(files).map((file) -> {
+            if (file.isFile() && file.getName().endsWith(".java"))
+                return file.getName().substring(0, file.getName().length() - 5);
+            return "";
+        }).collect(Collectors.toList());
 
-        return ediCLass;
     }
 
     @Override
