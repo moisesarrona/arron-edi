@@ -81,12 +81,9 @@ public class Utility implements UtilityI {
             "com.moisesarrona.segments.summary"
         };
 
-        List<String> clss = new ArrayList<>();
-        Arrays.stream(packages).forEach((packag) -> {
-            clss.addAll(getClassEdi(packag));
-        });
-
-        return clss;
+        return Arrays.stream(packages)
+                .flatMap(packag -> getClassEdi(packag).stream())
+                .collect(Collectors.toList());
     }
 
 }
