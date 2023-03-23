@@ -23,7 +23,6 @@ public class Utility implements UtilityI {
 
             while (line != null) {
                 sb.append(line);
-                sb.append(System.lineSeparator());
                 line = reader.readLine();
             }
 
