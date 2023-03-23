@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Utility implements UtilityI {
@@ -34,7 +35,7 @@ public class Utility implements UtilityI {
     }
 
     @Override
-    public List<String> getClassEdi(String packageName) {
+    public List<String> getClassEdi(String packageName, Boolean path) {
         String packagePath = packageName.replace(".", "/");
         File packageDir = new File("src/main/java/" + packagePath);
         File[] files = packageDir.listFiles();
@@ -42,14 +43,15 @@ public class Utility implements UtilityI {
         assert files != null;
         return Arrays.stream(files).map((file) -> {
             if (file.isFile() && file.getName().endsWith(".java"))
-                return file.getName().substring(0, file.getName().length() - 5);
+                return path? packageName + "." + "[" + file.getName().substring(0, file.getName().length() - 5) + "]" :
+                        file.getName().substring(0, file.getName().length() - 5);
             return "";
         }).collect(Collectors.toList());
 
     }
 
     @Override
-    public Object setFieldClassEdi(String packageName, String className) {
+    public Object setFieldClassEdi(String packageName, String[] elements){
         try {
             Class<?> cls = Class.forName(packageName + className);
             Constructor<?> constructor = cls.getDeclaredConstructor();
@@ -74,7 +76,7 @@ public class Utility implements UtilityI {
     }
 
     @Override
-    public List<String> getAllClassEdi() {
+    public List<String> getAllClassEdi(Boolean path) {
         String[] packages = {
             "com.moisesarrona.segments.heading",
             "com.moisesarrona.segments.detail",
@@ -82,7 +84,7 @@ public class Utility implements UtilityI {
         };
 
         return Arrays.stream(packages)
-                .flatMap(packag -> getClassEdi(packag).stream())
+                .flatMap(packag -> getClassEdi(packag, path).stream())
                 .collect(Collectors.toList());
     }
 
