@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Utility implements UtilityI {
 
@@ -52,19 +53,32 @@ public class Utility implements UtilityI {
     @Override
     public Object setFieldClassEdi(String packageName, String[] elements){
         try {
-            Class<?> cls = Class.forName(packageName + className);
+            Class<?> cls = Class.forName(packageName);
             Constructor<?> constructor = cls.getDeclaredConstructor();
             Object instance = constructor.newInstance();
             Field[] fields = cls.getDeclaredFields();
 
-            Arrays.stream(fields).forEach((field) -> {
-                field.setAccessible(true);
-                try {
-                    field.set(instance, "P");
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException("Error setting values: ", e);
-                }
-            });
+            IntStream.range(0, Math.min(fields.length, elements.length))
+                    .forEach(i -> {
+                        try {
+                            fields[i].setAccessible(true);
+                            fields[i].set(instance, null);
+                            if (i + 1 < elements.length) {
+                                Class<?> fieldType = fields[i].getType();
+                                if (fieldType == Integer.class) {
+                                    Integer value = Integer.parseInt(elements[i + 1]);
+                                    fields[i].set(instance, value);
+                                } else if (fieldType == Boolean.class) {
+                                    Boolean value = Boolean.parseBoolean(elements[i + 1]);
+                                    fields[i].set(instance, value);
+                                } else if (fieldType == String.class) {
+                                    fields[i].set(instance, elements[i + 1]);
+                                }
+                            }
+                        } catch (IllegalAccessException e) {
+                            throw new RuntimeException("Error in set attributes: ", e);
+                        }
+                    });
 
             return instance;
 
