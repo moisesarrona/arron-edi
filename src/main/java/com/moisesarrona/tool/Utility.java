@@ -90,13 +90,12 @@ public class Utility implements UtilityI {
 
     @Override
     public List<String> getAllClassEdi(Boolean path) {
-        String[] packages = {
-            "com.moisesarrona.segments.heading",
-            "com.moisesarrona.segments.detail",
-            "com.moisesarrona.segments.summary"
-        };
+        List<String> packages = new ArrayList<>();
+        packages.add("com.moisesarrona.segments.heading");
+        packages.add("com.moisesarrona.segments.detail");
+        packages.add("com.moisesarrona.segments.summary");
 
-        return Arrays.stream(packages)
+        return packages.stream()
                 .flatMap(packag -> getClassEdi(packag, path).stream())
                 .collect(Collectors.toList());
     }
