@@ -7,11 +7,14 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static com.moisesarrona.tool.Global.PATH_BODY_EDI;
 
 public class Utility implements UtilityI {
 
@@ -38,6 +41,8 @@ public class Utility implements UtilityI {
     public List<String> getClassEdi(String packageName, Boolean path) {
         String packagePath = packageName.replace(".", "/");
         File packageDir = new File("src/main/java/" + packagePath);
+        /*String packagePath = packageName.replaceFirst("./", "");
+        File packageDir = new File(packagePath);*/
         File[] files = packageDir.listFiles();
 
         assert files != null;
@@ -48,6 +53,38 @@ public class Utility implements UtilityI {
             return "";
         }).collect(Collectors.toList());
 
+    }
+
+    @Override
+    public List<String> getAllClassEdi(Boolean path) {
+        List<String> packages = new ArrayList<>();
+        packages.add("com.moisesarrona.segments.heading");
+        packages.add("com.moisesarrona.segments.detail");
+        packages.add("com.moisesarrona.segments.summary");
+        /*packages.add("./src/main/java/com/moisesarrona/segments/heading");
+        packages.add("./src/main/java/com/moisesarrona/segments/detail");
+        packages.add("./src/main/java/com/moisesarrona/segments/summary");*/
+
+        return packages.stream()
+                .flatMap(packag -> getClassEdi(packag, path).stream())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> getAllPackages() {
+        List<String> packageNames = new ArrayList<>();
+        File directory = new File(String.valueOf(PATH_BODY_EDI.item));
+
+        for (File file : Objects.requireNonNull(directory.listFiles())) {
+            if (file.isDirectory()) {
+                String packageName = file.getPath();
+                if (!packageNames.contains(packageName)) {
+                    packageNames.add(packageName );
+                }
+            }
+        }
+
+        return packageNames;
     }
 
     @Override
@@ -86,18 +123,6 @@ public class Utility implements UtilityI {
                  InstantiationException | IllegalAccessException e) {
             throw new RuntimeException("Error reading class, declaring constructor or instancing constructor, : ", e);
         }
-    }
-
-    @Override
-    public List<String> getAllClassEdi(Boolean path) {
-        List<String> packages = new ArrayList<>();
-        packages.add("com.moisesarrona.segments.heading");
-        packages.add("com.moisesarrona.segments.detail");
-        packages.add("com.moisesarrona.segments.summary");
-
-        return packages.stream()
-                .flatMap(packag -> getClassEdi(packag, path).stream())
-                .collect(Collectors.toList());
     }
 
 }
