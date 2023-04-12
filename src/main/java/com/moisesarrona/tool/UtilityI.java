@@ -8,8 +8,11 @@ public interface UtilityI {
 
     public List<String> getClassEdi(String packageName, Boolean path);
 
+    public List<String> getAllClassEdi(Boolean path);
+
+    public List<String> getAllPackages();
+
     public Object setFieldClassEdi(String packageName, String[] elements);
 
-    public List<String> getAllClassEdi(Boolean path);
 
 }
