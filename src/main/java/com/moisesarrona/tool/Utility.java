@@ -40,7 +40,7 @@ public class Utility implements UtilityI {
     @Override
     public List<String> getClassEdi(String packageName, Boolean path) {
         String packagePath = packageName.replace(".", "/");
-        File packageDir = new File("src/main/java/" + packagePath);
+        File packageDir = new File("./src/main/java/" + packagePath);
         /*String packagePath = packageName.replaceFirst("./", "");
         File packageDir = new File(packagePath);*/
         File[] files = packageDir.listFiles();
