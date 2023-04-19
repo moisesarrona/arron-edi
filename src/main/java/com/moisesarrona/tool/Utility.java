@@ -41,8 +41,6 @@ public class Utility implements UtilityI {
     public List<String> getClassEdi(String packageName, Boolean path) {
         String packagePath = packageName.replace(".", "/");
         File packageDir = new File("./src/main/java/" + packagePath);
-        /*String packagePath = packageName.replaceFirst("./", "");
-        File packageDir = new File(packagePath);*/
         File[] files = packageDir.listFiles();
 
         assert files != null;
@@ -61,9 +59,6 @@ public class Utility implements UtilityI {
         packages.add("com.moisesarrona.segments.heading");
         packages.add("com.moisesarrona.segments.detail");
         packages.add("com.moisesarrona.segments.summary");
-        /*packages.add("./src/main/java/com/moisesarrona/segments/heading");
-        packages.add("./src/main/java/com/moisesarrona/segments/detail");
-        packages.add("./src/main/java/com/moisesarrona/segments/summary");*/
 
         return packages.stream()
                 .flatMap(packag -> getClassEdi(packag, path).stream())
