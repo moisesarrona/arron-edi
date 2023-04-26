@@ -2,6 +2,7 @@ package com.moisesarrona.controller;
 
 import com.google.gson.Gson;
 import com.moisesarrona.segments.body.Body;
+import com.moisesarrona.tool.Utility;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
