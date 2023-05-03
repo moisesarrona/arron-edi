@@ -28,4 +28,8 @@ public class Converter {
         return gson.fromJson(json, Body.class);
     }
 
+    public String objectToJson(Body body) {
+        Gson gson = new Gson();
+        return gson.toJson(body);
+    }
 }
