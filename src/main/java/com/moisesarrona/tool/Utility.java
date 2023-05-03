@@ -104,7 +104,8 @@ public class Utility implements UtilityI {
                                     Boolean value = Boolean.parseBoolean(elements[i + 1]);
                                     fields[i].set(instance, value);
                                 } else if (fieldType == String.class) {
-                                    fields[i].set(instance, elements[i + 1]);
+                                    String value = String.valueOf(elements[i + 1]);
+                                    fields[i].set(instance, value);
                                 }
                             }
                         } catch (IllegalAccessException e) {
