@@ -47,7 +47,6 @@ public class Utility implements UtilityI {
         return Arrays.stream(files).map((file) -> {
             if (file.isFile() && file.getName().endsWith(".java"))
                 return path? packageName + "." + "[" + file.getName().substring(0, file.getName().length() - 5) + "]" :
-                        //file.getName().substring(0, file.getName().length() - 5);
                         file.getName().substring(0, file.getName().length() - 5);
             return "";
         }).collect(Collectors.toList());
