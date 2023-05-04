@@ -8,7 +8,6 @@ public class Main {
     public static void main(String[] args) {
 
         Test test = new Test();
-
         Converter converter = new Converter();
 
         System.out.println("Json to Object");
