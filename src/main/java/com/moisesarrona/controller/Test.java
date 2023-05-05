@@ -13,5 +13,17 @@ import java.util.List;
 @Data
 public class Test {
 
+    final String pathJson = "./edi/edi.json";
+    final String pathEdi = "./edi/edi.x12";
+
+    public String getStrJson () {
+        Utility utility = new Utility();
+        return utility.readFile(pathJson);
+    }
+
+    public String getStrEdi () {
+        Utility utility = new Utility();
+        return utility.readFile(pathEdi);
+    }
 
 }
