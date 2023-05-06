@@ -100,8 +100,8 @@ public class Utility implements UtilityI {
                                 if (fieldType == Integer.class) {
                                     Integer value = Integer.parseInt(elements[i + 1]);
                                     fields[i].set(instance, value);
-                                } else if (fieldType == Boolean.class) {
-                                    Boolean value = Boolean.parseBoolean(elements[i + 1]);
+                                } else if (fieldType == Double.class) {
+                                    Double value = Double.parseDouble(elements[i + 1]);
                                     fields[i].set(instance, value);
                                 } else if (fieldType == String.class) {
                                     String value = String.valueOf(elements[i + 1]);
