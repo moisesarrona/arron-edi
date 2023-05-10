@@ -14,8 +14,6 @@ public class Main {
         System.out.println(converter.jsonFileToObject(test.getPathJson()));
         System.out.println(converter.jsonStringToObject(test.getStrJson()));
 
-        System.out.println("Object to Json");
-        System.out.println(converter.objectToJson(test.getObjectEdi()));
 
 
     }
