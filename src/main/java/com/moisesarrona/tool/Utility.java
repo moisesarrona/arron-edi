@@ -3,6 +3,10 @@ package com.moisesarrona.tool;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author moisesarrona
@@ -11,7 +15,7 @@ import java.io.IOException;
 public class Utility implements UtilityI {
 
     /**
-     * Read any file and build string
+     * Read any file and build and return string
      *
      * @author moisesarrona
      * @param path: file location
@@ -25,7 +29,7 @@ public class Utility implements UtilityI {
             String line = reader.readLine();
 
             while (line != null) {
-                sb.append(line);
+                sb.append(line.trim());
                 line = reader.readLine();
             }
 
@@ -34,5 +38,31 @@ public class Utility implements UtilityI {
         } catch (IOException e) {
             throw new RuntimeException("Error reading file: ", e);
         }
+    }
+
+    /**
+     * Get packages from path and return name packages
+     *
+     * @author moisesarrona
+     * @param path: packages location
+     * @return packageNames: String collection Set<String>
+     */
+    @Override
+    public Set<String> getPackages(Path path) {
+        Set<String> packageNames = new HashSet<>();
+
+        try {
+            Files.walk(path)
+                    .filter(Files::isDirectory)
+                    .forEach(dir -> {
+                        Path packagePath = path.relativize(dir);
+                        String packageName = packagePath.toString().replace("\\", ".");
+                        packageNames.add(packageName);
+                    });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return packageNames;
     }
 }
