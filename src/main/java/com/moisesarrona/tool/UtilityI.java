@@ -13,4 +13,6 @@ public interface UtilityI {
 
     public Set<String> getPackages(Path path);
 
+    public List<String> getClassEdi(String packageName, Boolean includePath);
+
 }

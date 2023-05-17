@@ -65,4 +65,38 @@ public class Utility implements UtilityI {
 
         return packageNames;
     }
+
+    /**
+     * Get classes from packages
+     *
+     * @param packageName: packages name in format com.moisesarrona.segments
+     * @param includePath: add path true or no include path false
+     * @return classNames: String collection List<String>
+     */
+    @Override
+    public List<String> getClassEdi(String packageName, Boolean includePath) {
+        String packagePath = packageName.replace(".", "/");
+        File packageDir = new File("./src/main/java/" + packagePath);
+        File[] files = packageDir.listFiles();
+
+        List<String> classNames = new ArrayList<>();
+        if (files != null) {
+            classNames = Arrays.stream(files)
+                    .filter(file -> file.isFile() && file.getName().endsWith(".java"))
+                    .map(file -> {
+                        String className = packageName + "." + file.getName().substring(0, file.getName().length() - 5);
+                        try {
+                            Class.forName(className);
+                            return includePath ? className : file.getName().substring(0, file.getName().length() - 5);
+                        } catch (ClassNotFoundException e) {
+                            // El archivo no es una clase, se omite
+                            //return null;
+                            throw new RuntimeException("Error in class: " + e);
+                        }
+                    })
+                    //.filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+        }
+        return classNames;
+    }
 }
