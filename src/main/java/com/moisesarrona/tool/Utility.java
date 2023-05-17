@@ -99,4 +99,24 @@ public class Utility implements UtilityI {
         }
         return classNames;
     }
+
+    @Override
+    public List<String> getFieldClass(String packageName) {
+        try {
+            Class<?> cls = Class.forName(packageName);
+            Constructor<?> constructor = cls.getDeclaredConstructor();
+            Object instance = constructor.newInstance();
+            Field[] fields = cls.getDeclaredFields();
+            Arrays.stream(fields).forEach(item -> {
+                System.out.println(item.getName());
+            });
+        } catch (ClassNotFoundException | InvocationTargetException | NoSuchMethodException |
+                 InstantiationException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        return null;
+    }
+
+
 }

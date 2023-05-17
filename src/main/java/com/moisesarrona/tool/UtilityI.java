@@ -1,6 +1,7 @@
 package com.moisesarrona.tool;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,5 +15,7 @@ public interface UtilityI {
     public Set<String> getPackages(Path path);
 
     public List<String> getClassEdi(String packageName, Boolean includePath);
+
+    public List<String> getFieldClass(String packageName);
 
 }
