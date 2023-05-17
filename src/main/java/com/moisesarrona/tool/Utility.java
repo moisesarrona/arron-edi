@@ -1,12 +1,14 @@
 package com.moisesarrona.tool;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author moisesarrona
@@ -44,7 +46,7 @@ public class Utility implements UtilityI {
      * Get packages from path and return name packages
      *
      * @author moisesarrona
-     * @param path: packages location
+     * @param path: packages location.
      * @return packageNames: String collection Set<String>
      */
     @Override
@@ -56,11 +58,14 @@ public class Utility implements UtilityI {
                     .filter(Files::isDirectory)
                     .forEach(dir -> {
                         Path packagePath = path.relativize(dir);
-                        String packageName = packagePath.toString().replace("\\", ".");
-                        packageNames.add(packageName);
+                        Path fullPath = path.resolve(packagePath);
+                        String fullPackageName = fullPath.toString()
+                                .replace(File.separator, ".")
+                                .replace("src.main.java.", "");
+                        packageNames.add(fullPackageName);
                     });
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error reading file: " + e);
         }
 
         return packageNames;
