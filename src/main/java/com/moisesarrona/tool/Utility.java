@@ -9,6 +9,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author moisesarrona
@@ -105,8 +107,15 @@ public class Utility implements UtilityI {
         return classNames;
     }
 
+    /**
+     * Get fields from clases
+     *
+     * @param packageName: packages name in format com.moisesarrona.segments
+     * @return fieldsNames: String collection List<String>
+     */
     @Override
     public List<String> getFieldClass(String packageName) {
+        List<String> fieldsNames = new ArrayList<>();
         try {
             Class<?> cls = Class.forName(packageName);
             Constructor<?> constructor = cls.getDeclaredConstructor();
