@@ -113,14 +113,14 @@ public class Utility implements UtilityI {
             Object instance = constructor.newInstance();
             Field[] fields = cls.getDeclaredFields();
             Arrays.stream(fields).forEach(item -> {
-                System.out.println(item.getName());
+                fieldsNames.add(item.getName());
             });
         } catch (ClassNotFoundException | InvocationTargetException | NoSuchMethodException |
                  InstantiationException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
 
-        return null;
+        return fieldsNames;
     }
 
 
