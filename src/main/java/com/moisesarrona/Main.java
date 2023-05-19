@@ -1,7 +1,23 @@
 package com.moisesarrona;
 
+import com.moisesarrona.controller.Converter;
+import com.moisesarrona.controller.Test;
+
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        Test test = new Test();
+        Converter converter = new Converter();
+
+        System.out.println("Json to Object");
+        System.out.println(converter.jsonFileToObject(test.getPathJson()));
+        System.out.println(converter.jsonStringToObject(test.getStrJson()));
+
+        System.out.println("Json to EDI");
+        System.out.println(converter.jsonFileToEdi(test.getPathJson(), true));
+        System.out.println(converter.jsonFileToEdi(test.getStrJson(), false));
+
     }
+
 }
