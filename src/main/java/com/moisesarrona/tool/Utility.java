@@ -96,7 +96,6 @@ public class Utility implements UtilityI {
                             Class.forName(className);
                             return includePath ? className : file.getName().substring(0, file.getName().length() - 5);
                         } catch (ClassNotFoundException e) {
-                            // El archivo no es una clase, se omite
                             throw new RuntimeException("Error in class: " + e);
                         }
                     })
