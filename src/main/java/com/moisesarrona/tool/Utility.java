@@ -97,11 +97,9 @@ public class Utility implements UtilityI {
                             return includePath ? className : file.getName().substring(0, file.getName().length() - 5);
                         } catch (ClassNotFoundException e) {
                             // El archivo no es una clase, se omite
-                            //return null;
                             throw new RuntimeException("Error in class: " + e);
                         }
                     })
-                    //.filter(Objects::nonNull)
                     .collect(Collectors.toList());
         }
         return classNames;
