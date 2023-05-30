@@ -63,4 +63,11 @@ public class Converter {
 
     }
 
+    public String objectToJson(Body body) {
+        Gson gson = new Gson();
+        if (body == null)
+            throw new NullPointerException("Value is equals to null");
+        return gson.toJson(body);
+    }
+
 }
