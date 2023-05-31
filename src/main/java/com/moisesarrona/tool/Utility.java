@@ -22,8 +22,8 @@ public class Utility implements UtilityI {
      * Read any file and build and return string
      *
      * @author moisesarrona
-     * @param path: file location
-     * @return reader: file content
+     * @param path file location
+     * @return A String with file content
      */
     @Override
     public String readFile(String path) {
@@ -48,8 +48,8 @@ public class Utility implements UtilityI {
      * Get packages from path and return name packages
      *
      * @author moisesarrona
-     * @param path: packages location.
-     * @return packageNames: String collection Set<String>
+     * @param path packages location.
+     * @return String collection Set<String> with packages names
      */
     @Override
     public Set<String> getPackages(Path path) {
@@ -76,9 +76,9 @@ public class Utility implements UtilityI {
     /**
      * Get classes from packages
      *
-     * @param packageName: packages name in format com.moisesarrona.segments
-     * @param includePath: add path true or no include path false
-     * @return classNames: String collection List<String>
+     * @param packageName packages name in format com.moisesarrona.segments
+     * @param includePath add path true or no include path false
+     * @return String collection List<String> with packages name
      */
     @Override
     public List<String> getClassEdi(String packageName, Boolean includePath) {
@@ -107,8 +107,8 @@ public class Utility implements UtilityI {
     /**
      * Get fields from clases
      *
-     * @param packageName: packages name in format com.moisesarrona.segments
-     * @return fieldsNames: String collection List<String>
+     * @param packageName packages name in format com.moisesarrona.segments
+     * @return String collection List<String> with name classes
      */
     @Override
     public List<String> getFieldClass(String packageName) {
