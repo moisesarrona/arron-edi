@@ -8,24 +8,34 @@ __Description:__ Read and converter files json to Object and EDI
 ## Features
 
 ### Methods
-- [X] Json converter, json to edi, json to Object (classes)
-  - [X] **jsonFileToObject()** - Convert json to abstract classes for handling in java from a file
-  - [X] **jsonStringToObject()** Convert json to abstract classes for handling in java from a string
-  - [X] **jsonFileToEdi()** - Converter json to format EDIx12 (String)
-- [ ] Object converter, object to json, object to EDIx12
-  - [X] **objectToJson()** - Convert object to json from Object class
-  - [ ] **objectToEdi()** - Convert object to EDIx12
-- [ ] EDI converter - **pending**
-- [ ] Validator for EDI **pending**
+- Json
+  - `jsonFileToObject()` - Convert json to abstract classes for handling in java. **Parameters:** path: String.
+  - `jsonStringToObject()` Convert json to abstract classes for handling in java. **Parameters:** json: String.
+  - `jsonFileToEdi()` - Convert json to format EDIx12. **Parameters:** json: String, path: boolean.
+- Object
+  - `objectToJson()` - Convert object to json. **Parameters:** body: Body.class.
+  - `objectToEdi()` - Convert object to EDIx12. **Parameters:** body: Body.class.
+- EDI
 
 ### Technologies
-- Java 17
-- Validation
-- Gson
-- Lombok
+- Java 17: Java 17 is the `core` of the library, the most recent features of the version are used.
+- Lombok: It is used for code reduction, in `mapping` classes
+- Gson: It is used `temporarily`, it is intended that in future versions it will be `replaced`, by functions created by us.
+
+## About this
+
+### Community
+If you want to contribute in this project, you can do it, you do fork this repository and work in your changes, create pull request to our maintainer team verify yor changes and we create merge.
+
+If you want to use this library, you can by downloading the .jar of the version you want to use. At this moment we do not have a maven repository, we are working on it.
+
+### Versioning
+- MAJOR: version when you make incompatible API changes.
+- MINOR: version when you add functionality in a backward compatible manner.
+- PATCH: version when you make backward compatible bug fixes.
 
 ## Output and input formats
-JSON format
+JSON format output
 ```json
 {
   "head": {
@@ -164,7 +174,7 @@ JSON format
 }
 ```
 
-EDIx12 format
+EDIx12 format output
 ```
 ISA*00*Authorizat*00*Security I*01*Interchange Sen*01*004293478      *020926*2218*U*00401*000017955*0*P*^~
 GS*SH*Application Sen*Application Rec*19960515*2218*000000001*X*004010~
@@ -193,7 +203,7 @@ GE*1*000000001~
 IEA*1*000017955~
 ```
 
-Object format
+Object format input
 ```java
 ISA isa = new ISA();
 GS gs = new GS();
