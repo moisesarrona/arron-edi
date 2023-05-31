@@ -13,8 +13,18 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import com.moisesarrona.tool.Global;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 public class Converter {
 
+    /**
+     *
+     * @author moisesarrona
+     * @param path file location
+     * @return A Body class with EDI content
+     */
     public Body jsonFileToObject(String path) {
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             Gson gson = new Gson();
@@ -24,6 +34,11 @@ public class Converter {
         }
     }
 
+    /**
+     *
+     * @param json json content
+     * @return Body class with EDI content
+     */
     public Body jsonStringToObject(String json) {
         Gson gson = new Gson();
         if (json.isEmpty())
@@ -31,6 +46,12 @@ public class Converter {
         return gson.fromJson(json, Body.class);
     }
 
+    /**
+     *
+     * @param json json content
+     * @param path is path true, isn't path false
+     * @return A String with EDI content in format X12
+     */
     public String jsonFileToEdi(String json, Boolean path) {
         Utility utility = new Utility();
 
