@@ -78,7 +78,7 @@ public class Converter {
                 .replaceAll("}", "~").replaceAll(":", "*")
                 .replaceAll("\\[", "").replaceAll("]", "")
                 .replaceAll("\"(.*?)\"|\\s+", "$1")
-                //repeated value replacement
+
                 .replaceAll("~{2,}", "~").replaceAll("\\*{2,}", "*")
                 .replaceFirst("\\*", "");
 
