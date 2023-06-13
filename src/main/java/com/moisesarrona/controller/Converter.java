@@ -87,7 +87,7 @@ public class Converter {
     /**
      *
      * @param body class with EDI content
-     * @return A String with EDI content in format X12
+     * @return A String with EDI content in format json
      */
     public String objectToJson(Body body) {
         Gson gson = new Gson();
