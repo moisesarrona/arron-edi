@@ -7,9 +7,11 @@ import com.moisesarrona.tool.Utility;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.IntStream;
 
 import com.moisesarrona.tool.Global;
 
@@ -96,6 +98,11 @@ public class Converter {
         return gson.toJson(body);
     }
 
+    /**
+     *
+     * @param body class with EDI content
+     * @return A String with EDI content in format X12
+     */
     public String objectToEdi(Body body) {
         Class<?> bodyClass = body.getClass();
         Field[] bodyFields = bodyClass.getDeclaredFields();
