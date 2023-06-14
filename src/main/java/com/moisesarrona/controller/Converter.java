@@ -96,4 +96,58 @@ public class Converter {
         return gson.toJson(body);
     }
 
+    public String objectToEdi(Body body) {
+        Class<?> bodyClass = body.getClass();
+        Field[] bodyFields = bodyClass.getDeclaredFields();
+
+        StringBuilder ediContent = new StringBuilder();
+        Arrays.stream(bodyFields).forEach(bodyField -> {
+            bodyField.setAccessible(true);
+            try {
+
+                Object fieldValue = bodyField.get(body);
+                Class<?> ediClass = bodyField.getType();
+                Field[] ediFields = ediClass.getDeclaredFields();
+
+                Arrays.stream(ediFields).forEach(ediField -> {
+                    ediField.setAccessible(true);
+                    try {
+                        Object ediFieldValue = ediField.get(fieldValue);
+                        ediContent.append(ediFieldValue.getClass().getSimpleName()).append("*");
+
+                        Class<?> clss = ediField.getType();
+                        Field[] fields = clss.getDeclaredFields();
+
+                        IntStream.range(0, fields.length).forEach(index -> {
+                            Field field =fields[index];
+                            field.setAccessible(true);
+                            try {
+                                Object value = field.get(ediFieldValue);
+
+                                if (index == fields.length -1) {
+                                    ediContent.append(value.toString()).append("~");
+                                } else {
+                                    ediContent.append(value.toString()).append("*");
+                                }
+
+                            } catch (IllegalAccessException e) {
+                                throw new RuntimeException(e);
+                            }
+                        });
+
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                });
+
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
+
+        return ediContent.toString();
+    }
+
 }
