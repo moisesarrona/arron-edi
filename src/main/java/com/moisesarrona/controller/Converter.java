@@ -7,14 +7,26 @@ import com.moisesarrona.tool.Utility;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.IntStream;
 
 import com.moisesarrona.tool.Global;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 public class Converter {
 
+    /**
+     *
+     * @author moisesarrona
+     * @param path file location
+     * @return A Body class with EDI content
+     */
     public Body jsonFileToObject(String path) {
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             Gson gson = new Gson();
@@ -24,6 +36,11 @@ public class Converter {
         }
     }
 
+    /**
+     *
+     * @param json json content
+     * @return Body class with EDI content
+     */
     public Body jsonStringToObject(String json) {
         Gson gson = new Gson();
         if (json.isEmpty())
@@ -31,6 +48,12 @@ public class Converter {
         return gson.fromJson(json, Body.class);
     }
 
+    /**
+     *
+     * @param json json content
+     * @param path is path true, isn't path false
+     * @return A String with EDI content in format X12
+     */
     public String jsonFileToEdi(String json, Boolean path) {
         Utility utility = new Utility();
 
@@ -57,10 +80,81 @@ public class Converter {
                 .replaceAll("}", "~").replaceAll(":", "*")
                 .replaceAll("\\[", "").replaceAll("]", "")
                 .replaceAll("\"(.*?)\"|\\s+", "$1")
-                //repeated value replacement
+
                 .replaceAll("~{2,}", "~").replaceAll("\\*{2,}", "*")
                 .replaceFirst("\\*", "");
 
+    }
+
+    /**
+     *
+     * @param body class with EDI content
+     * @return A String with EDI content in format json
+     */
+    public String objectToJson(Body body) {
+        Gson gson = new Gson();
+        if (body == null)
+            throw new NullPointerException("Value is equals to null");
+        return gson.toJson(body);
+    }
+
+    /**
+     *
+     * @param body class with EDI content
+     * @return A String with EDI content in format X12
+     */
+    public String objectToEdi(Body body) {
+        Class<?> bodyClass = body.getClass();
+        Field[] bodyFields = bodyClass.getDeclaredFields();
+
+        StringBuilder ediContent = new StringBuilder();
+        Arrays.stream(bodyFields).forEach(bodyField -> {
+            bodyField.setAccessible(true);
+            try {
+
+                Object fieldValue = bodyField.get(body);
+                Class<?> ediClass = bodyField.getType();
+                Field[] ediFields = ediClass.getDeclaredFields();
+
+                Arrays.stream(ediFields).forEach(ediField -> {
+                    ediField.setAccessible(true);
+                    try {
+                        Object ediFieldValue = ediField.get(fieldValue);
+                        ediContent.append(ediFieldValue.getClass().getSimpleName()).append("*");
+
+                        Class<?> clss = ediField.getType();
+                        Field[] fields = clss.getDeclaredFields();
+
+                        IntStream.range(0, fields.length).forEach(index -> {
+                            Field field =fields[index];
+                            field.setAccessible(true);
+                            try {
+                                Object value = field.get(ediFieldValue);
+
+                                if (index == fields.length -1) {
+                                    ediContent.append(value.toString()).append("~");
+                                } else {
+                                    ediContent.append(value.toString()).append("*");
+                                }
+
+                            } catch (IllegalAccessException e) {
+                                throw new RuntimeException(e);
+                            }
+                        });
+
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                });
+
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
+
+        return ediContent.toString();
     }
 
 }

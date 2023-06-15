@@ -18,6 +18,12 @@ public class Main {
         System.out.println(converter.jsonFileToEdi(test.getPathJson(), true));
         System.out.println(converter.jsonFileToEdi(test.getStrJson(), false));
 
+        System.out.println("Object to Json");
+        System.out.println(converter.objectToJson(test.getObjectEdi()));
+
+        System.out.println("Object to EDI");
+        System.out.println(converter.objectToEdi(test.getObjectEdi()));
+
     }
 
 }
