@@ -17,13 +17,13 @@ import com.moisesarrona.tool.Global;
 
 /**
  * @author moisesarrona
- * @version 0.1
+ * @version 1.0
  */
 public class Converter {
 
     /**
+     * Convert json to Object
      *
-     * @author moisesarrona
      * @param path file location
      * @return A Body class with EDI content
      */
@@ -37,6 +37,7 @@ public class Converter {
     }
 
     /**
+     * Convert to json to Object
      *
      * @param json json content
      * @return Body class with EDI content
@@ -49,8 +50,9 @@ public class Converter {
     }
 
     /**
+     * Convert Json to EDIx12
      *
-     * @param json json content
+     * @param json Json content
      * @param path is path true, isn't path false
      * @return A String with EDI content in format X12
      */
@@ -87,6 +89,7 @@ public class Converter {
     }
 
     /**
+     * Convert Object to Json
      *
      * @param body class with EDI content
      * @return A String with EDI content in format json
@@ -99,6 +102,7 @@ public class Converter {
     }
 
     /**
+     * Convert Object to EDIx12
      *
      * @param body class with EDI content
      * @return A String with EDI content in format X12
