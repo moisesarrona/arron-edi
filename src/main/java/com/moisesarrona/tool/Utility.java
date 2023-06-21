@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @author moisesarrona
  * @version 0.1
  */
-public class Utility implements UtilityI {
+public class Utility implements UtilityInterface {
 
     /**
      * Read any file and build and return string
