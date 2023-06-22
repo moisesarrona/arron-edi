@@ -1,31 +1,34 @@
-package com.moisesarrona.controller;
+package com.moisesarrona.tool;
 
 import com.moisesarrona.segments.body.*;
 import com.moisesarrona.segments.detail.*;
 import com.moisesarrona.segments.heading.*;
 import com.moisesarrona.segments.summary.*;
-import com.moisesarrona.tool.Utility;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class Test {
+public class Test implements TestInterface {
 
     final String pathJson = "./edi/edi.json";
+
     final String pathEdi = "./edi/edi.x12";
 
+    @Override
     public String getStrJson () {
         Utility utility = new Utility();
         return utility.readFile(pathJson);
     }
 
+    @Override
     public String getStrEdi () {
         Utility utility = new Utility();
         return utility.readFile(pathEdi);
     }
 
+    @Override
     public Body getObjectEdi() {
         //HEAD
         ISA isa = new ISA();
