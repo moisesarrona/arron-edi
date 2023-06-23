@@ -115,42 +115,14 @@ public class Converter {
         Arrays.stream(bodyFields).forEach(bodyField -> {
             bodyField.setAccessible(true);
             try {
-
                 Object fieldValue = bodyField.get(body);
                 Class<?> ediClass = bodyField.getType();
                 Field[] ediFields = ediClass.getDeclaredFields();
 
-                Arrays.stream(ediFields).forEach(ediField -> {
-                    ediField.setAccessible(true);
-                    try {
-                        Object ediFieldValue = ediField.get(fieldValue);
-                        ediContent.append(ediFieldValue.getClass().getSimpleName()).append("*");
-
-                        Class<?> clss = ediField.getType();
-                        Field[] fields = clss.getDeclaredFields();
-
-                        IntStream.range(0, fields.length).forEach(index -> {
-                            Field field =fields[index];
-                            field.setAccessible(true);
-                            try {
-                                Object value = field.get(ediFieldValue);
-
-                                if (index == fields.length -1) {
-                                    ediContent.append(value.toString()).append("~");
-                                } else {
-                                    ediContent.append(value.toString()).append("*");
-                                }
-
-                            } catch (IllegalAccessException e) {
-                                throw new RuntimeException(e);
-                            }
-                        });
-
-                    } catch (IllegalAccessException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                });
+                if (fieldValue instanceof List<?>)
+                    ediContent.append(processList((List<?>) fieldValue));
+                else
+                    ediContent.append(processField(fieldValue, ediFields));
 
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
@@ -158,6 +130,67 @@ public class Converter {
 
         });
 
+        return ediContent.toString();
+    }
+
+    /**
+     * Process Detail list from Body class
+     *
+     * @param fieldValues Detail list
+     * @return A String with Detail values
+     */
+    public String processList(List<?> fieldValues) {
+        StringBuilder ediContent = new StringBuilder();
+        fieldValues.forEach(fieldValue -> {
+            Class<?> detailClass = fieldValue.getClass();
+            Field[] detailFields = detailClass.getDeclaredFields();
+            ediContent.append(processField(fieldValue, detailFields));
+        });
+        return ediContent.toString();
+    }
+
+    /**
+     * Process fields get data from class edi
+     *
+     * @param fieldValue Fields from class edi
+     * @param ediFields Class part body
+     * @return A String with part body values
+     */
+    public String processField(Object fieldValue, Field[] ediFields) {
+        StringBuilder ediContent = new StringBuilder();
+        Arrays.stream(ediFields).forEach(ediField -> {
+            ediField.setAccessible(true);
+            try {
+                Object ediFieldValue = ediField.get(fieldValue);
+                ediContent.append(ediFieldValue.getClass().getSimpleName()).append("*");
+
+                Class<?> clss = ediField.getType();
+                Field[] fields = clss.getDeclaredFields();
+
+                IntStream.range(0, fields.length).forEach(index -> {
+                    Field field =fields[index];
+                    field.setAccessible(true);
+                    try {
+                        Object value = field.get(ediFieldValue);
+
+                        if (value != null) {
+                            if (index == fields.length -1) {
+                                ediContent.append(value.toString()).append("~");
+                            } else {
+                                ediContent.append(value.toString()).append("*");
+                            }
+                        }
+
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
         return ediContent.toString();
     }
 
