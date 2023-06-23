@@ -9,6 +9,10 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author moisesarrona
+ * @version 0.1
+ */
 @Data
 public class Test implements TestInterface {
 
@@ -16,18 +20,33 @@ public class Test implements TestInterface {
 
     final String pathEdi = "./edi/edi.x12";
 
+    /**
+     * Read content JSON file
+     *
+     * @return Content from JSON file
+     */
     @Override
     public String getStrJson () {
         Utility utility = new Utility();
         return utility.readFile(pathJson);
     }
 
+    /**
+     * Read content EDIx12 file
+     *
+     * @return Content from EDIx12 file
+     */
     @Override
     public String getStrEdi () {
         Utility utility = new Utility();
         return utility.readFile(pathEdi);
     }
 
+    /**
+     * Set attributes to build EDI class
+     *
+     * @return Body EDIx12 class
+     */
     @Override
     public Body getObjectEdi() {
         //HEAD
