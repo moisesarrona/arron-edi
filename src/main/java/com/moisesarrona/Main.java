@@ -1,7 +1,7 @@
 package com.moisesarrona;
 
 import com.moisesarrona.controller.Converter;
-import com.moisesarrona.controller.Test;
+import com.moisesarrona.tool.Test;
 
 public class Main {
 

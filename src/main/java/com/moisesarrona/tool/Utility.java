@@ -16,12 +16,11 @@ import java.util.stream.Collectors;
  * @author moisesarrona
  * @version 0.1
  */
-public class Utility implements UtilityI {
+public class Utility implements UtilityInterface {
 
     /**
      * Read any file and build and return string
      *
-     * @author moisesarrona
      * @param path file location
      * @return A String with file content
      */
@@ -47,7 +46,6 @@ public class Utility implements UtilityI {
     /**
      * Get packages from path and return name packages
      *
-     * @author moisesarrona
      * @param path packages location.
      * @return String collection Set<String> with packages names
      */
