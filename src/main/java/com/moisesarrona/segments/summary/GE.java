@@ -8,12 +8,12 @@ import javax.validation.constraints.Size;
 @Data
 public class GE {
 
-    @NotBlank(message = "Number of Transaction Sets Included cannot be blank")
     @Size(min = 1, max = 6, message = "Number of Transaction Sets Included must be between 1 and 6 characters long")
-    private Integer numberOfTransactionSetsIncluded;
+    @NotBlank(message = "Number of Transaction Sets Included cannot be blank")
+    private String numberOfTransactionSetsIncluded;
 
-    @NotBlank(message = "Group Control Number cannot be blank")
     @Size(min = 1, max = 9, message = "Group Control Number must be between 1 and 9 characters long")
+    @NotBlank(message = "Group Control Number cannot be blank")
     private String groupControlNumber;
 
 }

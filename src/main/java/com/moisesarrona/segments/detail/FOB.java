@@ -8,14 +8,11 @@ import lombok.Data;
 @Data
 public class FOB {
 
-    @NotBlank(message = "Shipment Method of Payment is required")
-    @Size(min = 2, max = 2, message = "Shipment Method of Payment must be 2 characters")
-    private String shipmentMethodOfPayment;
+    @NotBlank(message = "Reference Identification Qualifier cannot be blank")
+    @Size(min = 2, max = 3, message = "Reference Identification Qualifier must be between 2 and 3 characters long")
+    private String referenceIdentificationQualifier;
 
-    /*@Size(min = 1, max = 2, message = "Location Qualifier must be 1-2 characters")
-    private String locationQualifier;
-
-    @Size(min = 1, max = 30, message = "Location Identifier must be 1-30 characters")
-    private String locationIdentifier;*/
+    @Size(min = 1, max = 5, message = "Reference Identification must be between 1 and 5 characters long")
+    private String referenceIdentification;
 
 }
