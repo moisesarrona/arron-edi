@@ -17,7 +17,7 @@ import com.moisesarrona.tool.Global;
 
 /**
  * @author moisesarrona
- * @version 1.0
+ * @version 1.1
  */
 public class Converter {
 
