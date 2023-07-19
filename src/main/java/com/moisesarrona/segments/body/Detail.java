@@ -6,30 +6,26 @@ import lombok.Data;
 @Data
 public class Detail {
 
-    private HL hl;
+    private HL HL;
 
-    private MEA mea;
+    private MEA MEA;
 
-    private TD1 td1;
+    private TD1 TD1;
 
-    private TD5 td5;
+    private TD5 TD5;
 
-    private REF ref;
+    private REF REF;
 
-    private FOB fob;
+    private FOB FOB;
 
-    private N1 n1;
+    private N1 N1;
 
-    private N3 n3;
+    private LIN LIN;
 
-    private N4 n4;
+    private SN1 SN1;
 
-    private LIN lin;
+    private PRF PRF;
 
-    private SN1 sn1;
-
-    private PRF prf;
-
-    private PID pid;
+    private PID PID;
 
 }
