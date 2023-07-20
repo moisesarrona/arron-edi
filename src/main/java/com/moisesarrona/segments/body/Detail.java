@@ -20,10 +20,6 @@ public class Detail {
 
     private N1 n1;
 
-    private N3 n3;
-
-    private N4 n4;
-
     private LIN lin;
 
     private SN1 sn1;
