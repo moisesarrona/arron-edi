@@ -6,14 +6,14 @@ import lombok.Data;
 @Data
 public class Head {
 
-    private ISA ISA;
+    private ISA isa;
 
-    private GS GS;
+    private GS gs;
 
-    private ST ST;
+    private ST st;
 
-    private BSN BSN;
+    private BSN bsn;
 
-    private DTM DTM;
+    private DTM dtm;
 
 }

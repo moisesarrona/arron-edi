@@ -7,10 +7,10 @@ import java.util.List;
 @Data
 public class Body {
 
-    private Head HEAD;
+    private Head head;
 
-    private List<Detail> DETAIL;
+    private List<Detail> details;
 
-    private Summary SUMMARY;
+    private Summary summary;
 
 }

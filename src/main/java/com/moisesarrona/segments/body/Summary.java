@@ -9,12 +9,12 @@ import lombok.Data;
 @Data
 public class Summary {
 
-    private CTT CTT;
+    private CTT ctt;
 
-    private SE SE;
+    private SE se;
 
-    private GE GE;
+    private GE ge;
 
-    private IEA IEA;
+    private IEA iea;
 
 }
