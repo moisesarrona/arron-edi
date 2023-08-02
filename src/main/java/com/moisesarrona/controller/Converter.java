@@ -85,7 +85,6 @@ public class Converter {
 
                 .replaceAll("~{2,}", "~").replaceAll("\\*{2,}", "*")
                 .replaceFirst("\\*", "");
-
     }
 
     /**
