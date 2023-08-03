@@ -187,41 +187,41 @@ public class Test implements TestInterface {
 
 
         Head head = new Head();
-        head.setISA(isa);
-        head.setGS(gs);
-        head.setST(st);
-        head.setBSN(bsn);
-        head.setDTM(dtm);
+        head.setIsa(isa);
+        head.setGs(gs);
+        head.setSt(st);
+        head.setBsn(bsn);
+        head.setDtm(dtm);
 
         List<Detail> details = new ArrayList<>();
         Detail detail = new Detail();
-        detail.setHL(hl);
-        detail.setMEA(mea);
-        detail.setTD1(td1);
-        detail.setTD5(td5);
-        detail.setREF(ref);
-        detail.setFOB(fob);
+        detail.setHl(hl);
+        detail.setMea(mea);
+        detail.setTd1(td1);
+        detail.setTd5(td5);
+        detail.setRef(ref);
+        detail.setFob(fob);
         detail.setN1(n1);
         detail.setN1(n1_);
-        detail.setHL(hl_);
-        detail.setLIN(lin);
-        detail.setSN1(sn1);
-        detail.setPRF(prf);
-        detail.setPID(pid);
-        detail.setTD1(td1);
-        detail.setREF(ref);
+        detail.setHl(hl_);
+        detail.setLin(lin);
+        detail.setSn1(sn1);
+        detail.setPrf(prf);
+        detail.setPid(pid);
+        detail.setTd1(td1);
+        detail.setRef(ref);
         details.add(detail);
 
         Summary summary = new Summary();
-        summary.setCTT(ctt);
-        summary.setSE(se);
-        summary.setGE(ge);
-        summary.setIEA(iea);
+        summary.setCtt(ctt);
+        summary.setSe(se);
+        summary.setGe(ge);
+        summary.setIea(iea);
 
         Body body = new Body();
-        body.setHEAD(head);
-        body.setDETAIL(details);
-        body.setSUMMARY(summary);
+        body.setHead(head);
+        body.setDetails(details);
+        body.setSummary(summary);
 
         return body;
     }

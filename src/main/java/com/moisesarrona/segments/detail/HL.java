@@ -8,18 +8,15 @@ import javax.validation.constraints.Size;
 @Data
 public class HL {
 
-    @NotBlank(message = "Hierarchical ID Number cannot be null")
     @Size(min = 1, max = 12, message = "Hierarchical ID Number must be between 1 and 12 characters long")
-    private String hierarchicalIDNumber;
+    @NotBlank(message = "Hierarchical ID Number cannot be blank")
+    private String hierarchicalIdNumber;
 
-    @Size(min = 1, max = 12, message = "Hierarchical Parent ID Number must be between 1 and 12 characters long")
-    private String hierarchicalParentIDNumber;
+    @Size(min = 9, max = 12, message = "Hierarchical Parent ID Number must be between 9 and 12 characters long")
+    private String hierarchicalParentIdNumber;
 
-    @NotBlank(message = "Hierarchical Level Code cannot be null")
-    @Size(min = 1, max = 2, message = "Hierarchical Level Code must be between 1 and 2 characters long")
+    @Size(min = 1, max = 2, message = "Hierarchical Level Code must be 1 or 2 characters long")
+    @NotBlank(message = "Hierarchical Level Code cannot be blank")
     private String hierarchicalLevelCode;
-
-    /*@Size(min = 1, max = 1, message = "Hierarchical Child Code must be 1 character long")
-    private String hierarchicalChildCode;*/
 
 }

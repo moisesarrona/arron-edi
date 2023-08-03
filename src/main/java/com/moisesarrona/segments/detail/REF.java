@@ -14,7 +14,4 @@ public class REF {
     @Size(min = 1, max = 5, message = "Reference Identification must be between 1 and 5 characters long")
     private String referenceIdentification;
 
-    /*@Size(min = 2, max = 80, message = "Description cannot be longer than 80 characters")
-    private String description;*/
-
 }

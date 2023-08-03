@@ -1,7 +1,7 @@
 # ArronEdi - x12
 Open source library written in java 17 to translate and convert EDIx12 documents to json, classes, natural language. Library is under initial construction, so it will undergo important structural changes.
 
->__v0.1.1__  
+>__v0.1.2__  
 __Author:__ [@moisesarrona](https://github.com/mosesarrona)  
 __Description:__ Fixed error when reading a object class and converting it to edix12.
 
@@ -236,8 +236,7 @@ Detail detail = new Detail();
 Summary summary = new Summary();
 
 Body body = new Body();
-
 ```
 
-### About me 👨‍💻
+#### About me 👨‍💻
 Hi, my name is **Moises Arrona** I'm creator this library, follow me in [Github](https://github.com/mosesarrona) for more projects or [Instagram](https://www.instagram.com/moisesarrona/) for anything

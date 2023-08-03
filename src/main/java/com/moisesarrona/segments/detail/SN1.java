@@ -9,23 +9,18 @@ import lombok.Data;
 @Data
 public class SN1 {
 
-    @Size(min = 1, max = 20, message = "Assigned Identification must be between {min} and {max} characters long")
+    @Size(min = 1, max = 20, message = "Assigned Identification must be between 1 and 20 characters long")
     private String assignedIdentification;
 
     @NotBlank(message = "Number of Units Shipped cannot be blank")
-    @Digits(integer = 10, message = "Number of Units Shipped must contain only digits", fraction = 0)
-    @Size(min = 1, max = 10, message = "Number of Units Shipped must be between {min} and {max} characters long")
-    private Integer numberOfUnitsShipped;
+    @Size(min = 1, max = 10, message = "Number of Units Shipped must be between 1 and 10 characters long")
+    private String numberOfUnitsShipped;
 
     @NotBlank(message = "Unit or Basis for Measurement Code cannot be blank")
-    @Size(min = 2, max = 2, message = "Assigned Identification must be {min} characters long")
+    @Size(min = 2, max = 2, message = "Unit or Basis for Measurement Code must be 2 characters long")
     private String unitOrBasisForMeasurementCode;
 
-    @Digits(integer = 10, message = "Quantity Shipped To Date must contain only digits", fraction = 0)
-    @Size(min = 1, max = 10, message = "Quantity Shipped To Date must be between {min} and {max} characters long")
-    private Integer quantityShippedToDate;
-
-    /*@NotBlank(message = "Quantity Ordered cannot be blank")
-    private Integer quantityOrdered;*/
+    @Size(min = 1, max = 15, message = "Quantity Shipped to Date must be between 1 and 15 characters long")
+    private String quantityShippedToDate;
 
 }
