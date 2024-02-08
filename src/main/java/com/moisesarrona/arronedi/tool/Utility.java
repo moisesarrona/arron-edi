@@ -127,5 +127,4 @@ public class Utility implements UtilityInterface {
         return fieldsNames;
     }
 
-
 }
