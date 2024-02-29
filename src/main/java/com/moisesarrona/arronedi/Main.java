@@ -11,7 +11,6 @@ public class Main {
         Converter converter = new Converter();
 
         /* --- Json --- */
-        System.out.println();
         System.out.println("--- Json ---");
         System.out.println("Json to Object");
         System.out.println(converter.jsonFileToObject(test.getPathJson()));
@@ -35,8 +34,8 @@ public class Main {
         System.out.println("--- Edi ---");
         System.out.println("Edi to Object");
         System.out.println(converter.ediToObject(test.getPathEdi(), true));
-        System.out.println(converter.ediToObject(test.getStrEdi(), false));
+        //System.out.println(converter.ediToObject(test.getStrEdi(), false));
 
     }
-
+    
 }
