@@ -16,10 +16,8 @@ import java.util.List;
 @Data
 public class Test implements TestInterface {
 
-    final String pathJson = "./edi/edi.json";
-
-    final String pathEdi = "./edi/edi.x12";
-
+    final String pathJson = "./src/main/resources/static/edi.json";
+    final String pathEdi = "./src/main/resources/static/edi.x12";
     /**
      * Read content JSON file
      *
