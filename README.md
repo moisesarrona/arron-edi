@@ -3,9 +3,9 @@ Open source library written in java 17 to translate and convert EDIx12 documents
 
 NOTE: NEW VERSION CHANGE TO MAJOR, BECAUSE CHANGE STRUCTURE FROM NEW PACKAGE.
 
->__v0.1.2__  
+>__v0.2.0__  
 __Author:__ [@moisesarrona](https://github.com/mosesarrona)  
-__Description:__ Fixed error when reading a object class and converting it to edix12.
+__Description:__ Migrate from Java 17 to Java 21
 
 ## Features
 
@@ -20,7 +20,7 @@ __Description:__ Fixed error when reading a object class and converting it to ed
 - EDI
 
 ### Technologies
-- Java 17: Java 17 is the `core` of the library, the most recent features of the version are used.
+- Java 21: Java 21 is the `core` of the library, the most recent features of the version are used.
 - Lombok: It is used for code reduction, in `mapping` classes
 - Gson: It is used `temporarily`, it is intended that in future versions it will be `replaced`, by functions created by us.
 
