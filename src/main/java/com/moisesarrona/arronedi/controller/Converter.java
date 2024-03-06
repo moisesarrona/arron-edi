@@ -193,42 +193,4 @@ public class Converter {
         return ediContent.toString();
     }
 
-    public String ediToObject(String edi, Boolean path) {
-        Utility utility = new Utility();
-
-        String ediContent = path? utility.readFile(edi) : edi;
-        String[] ediSegments = ediContent.split("~");
-        Arrays.stream(ediSegments).forEach(segment -> {
-            String[] ediElement = segment.split("\\*");
-            //System.out.println(Arrays.toString(ediElement));
-        });
-
-
-
-
-
-
-
-
-        Path location = Global.getPackagePath();
-        Set<String> packages = utility.getPackages(location);
-
-        AtomicReference<String> jsonContentRef = new AtomicReference<>(ediContent);
-        packages.forEach(packag -> {
-            List<String> clss = utility.getClassEdi(packag, true);
-            clss.forEach(cls -> {
-                List<String> fields = utility.getFieldClass(cls);
-                fields.forEach(field -> {
-                    if (!(cls.equals(Global.PATH_HEAD) || cls.equals(Global.PATH_DETAIL) ||
-                            cls.equals(Global.PATH_SUMMARY))) {
-                        jsonContentRef.set(jsonContentRef.get().replace(field, ""));
-                    }
-                });
-            });
-        });
-        //System.out.println(jsonContentRef);
-
-        return ediContent;
-    }
-
 }

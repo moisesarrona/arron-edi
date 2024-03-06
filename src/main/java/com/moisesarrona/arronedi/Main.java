@@ -29,13 +29,6 @@ public class Main {
         System.out.println("Object to EDI");
         System.out.println(converter.objectToEdi(test.getObjectEdi()));
 
-        /* -- Edi --- */
-        System.out.println();
-        System.out.println("--- Edi ---");
-        System.out.println("Edi to Object");
-        System.out.println(converter.ediToObject(test.getPathEdi(), true));
-        //System.out.println(converter.ediToObject(test.getStrEdi(), false));
-
     }
     
 }
