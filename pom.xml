@@ -6,11 +6,13 @@
 
     <groupId>com.moisesarrona</groupId>
     <artifactId>arron-edi</artifactId>
-    <version>0.1.2</version>
+    <version>0.2.0</version>
+    <name>arron-edi</name>
+    <description>Library written in java to read edi x12 documents and convert edi to json, edi to edi class, etc.</description>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -19,7 +21,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.26</version>
+            <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
 
